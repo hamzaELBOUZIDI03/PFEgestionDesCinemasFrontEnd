@@ -1,0 +1,31 @@
+.mat-icon {
+  margin-right: 8px;
+  color: wheat;
+
+
+}
+.mat-list-item {
+  height: 48px;
+  line-height: 48px;
+
+}
+span{
+  color: goldenrod;
+  font-style: inherit;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 35px;
+
+}
+h5{
+  color: wheat;
+  font-style: inherit;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.sidebar {
+  width: 260px;
+  background:#1e2726;
+}
+
+

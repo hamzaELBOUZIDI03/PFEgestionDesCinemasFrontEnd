@@ -1,0 +1,131 @@
+
+<div class="row">
+  <div class="col-md-3 sidebar">
+
+    <a mat-list-item routerLink="/accueil" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+      <span>Accueil</span>
+   </a>
+
+   <mat-nav-list>
+
+     <!-- <a mat-list-item routerLink="/adminDashboard" routerLinkActive="active">
+       <mat-icon>dashboard</mat-icon>
+       <span>Dashboard</span>
+     </a> -->
+
+     <!-- Ajoutez d'autres liens pour les opérations CRUD -->
+
+
+     <!-- <a mat-list-item routerLink="/ville" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Villes</h5>
+
+     </a> -->
+     <a mat-list-item routerLink="/cinemaAdmin" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Cinémas</h5>
+
+     </a>
+     <a mat-list-item routerLink="/categorie" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Catégories</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/film" routerLinkActive="active">
+       <mat-icon></mat-icon>
+       <h5>Films</h5>
+     </a>
+
+     <a mat-list-item routerLink="/salle" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Salle</h5>
+
+     </a>
+     <a mat-list-item routerLink="/seance" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Séances</h5>
+
+     </a>
+
+
+     <a mat-list-item routerLink="/place" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Places</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/projection" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Projéctions</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/ticket" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Tickets</h5>
+
+     </a>
+
+
+   </mat-nav-list>
+
+  </div>
+  <div class="col-md-9">
+    <div class="container">
+      <h2>Gestion des villes</h2>
+
+      <!-- Formulaire d'ajout ou de modification -->
+      <form (ngSubmit)="addOrUpdateVille()" class="mb-4">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom :</label>
+          <input type="text" id="name" [(ngModel)]="selectedVille.name" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="longitude" class="form-label">Longitude :</label>
+          <input type="number" id="longitude" [(ngModel)]="selectedVille.longitude" name="longitude" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="latitude" class="form-label">Latitude :</label>
+          <input type="number" id="latitude" [(ngModel)]="selectedVille.latitude" name="latitude" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="altitude" class="form-label">Altitude :</label>
+          <input type="number" id="altitude" [(ngModel)]="selectedVille.altitude" name="altitude" class="form-control" required>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary">{{ isAddMode ? 'Ajouter' : 'Modifier' }}</button>
+          <button type="button" (click)="clearForm()" class="btn btn-secondary">Annuler</button>
+        </div>
+      </form>
+
+      <!-- Liste des villes -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Altitude</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ville of villes">
+            <td>{{ ville.name }}</td>
+            <td>{{ ville.longitude }}</td>
+            <td>{{ ville.latitude }}</td>
+            <td>{{ ville.altitude }}</td>
+            <td>
+              <button (click)="editVille(ville)" class="btn btn-primary btn-sm">Modifier</button>
+              <button (click)="deleteVille(ville.id)" class="btn btn-danger btn-sm">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

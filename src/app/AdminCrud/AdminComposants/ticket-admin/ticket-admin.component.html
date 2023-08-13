@@ -1,0 +1,153 @@
+<div class="row">
+  <div class="col-md-3 sidebar">
+
+    <a mat-list-item routerLink="/accueil" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+
+      <span>Accueil</span>
+   </a>
+   <mat-nav-list>
+
+     <!-- <a mat-list-item routerLink="/adminDashboard" routerLinkActive="active">
+       <mat-icon>dashboard</mat-icon>
+       <span>Dashboard</span>
+     </a> -->
+
+     <!-- Ajoutez d'autres liens pour les opérations CRUD -->
+
+
+     <a mat-list-item routerLink="/ville" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Villes</h5>
+
+     </a>
+     <a mat-list-item routerLink="/cinemaAdmin" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Cinémas</h5>
+
+     </a>
+     <a mat-list-item routerLink="/categorie" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Catégories</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/film" routerLinkActive="active">
+       <mat-icon></mat-icon>
+       <h5>Films</h5>
+     </a>
+
+     <a mat-list-item routerLink="/salle" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Salle</h5>
+
+     </a>
+     <a mat-list-item routerLink="/seance" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Séances</h5>
+
+     </a>
+
+
+     <a mat-list-item routerLink="/place" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Places</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/projection" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Projéctions</h5>
+
+     </a>
+
+     <!-- <a mat-list-item routerLink="/ticket" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Tickets</h5>
+
+     </a> -->
+
+
+   </mat-nav-list>
+  </div>
+  <div class="col-md-9">
+    <div class="container">
+      <h2>Gestion des tickets</h2>
+
+      <!-- Formulaire d'ajout ou de modification -->
+      <form (ngSubmit)="addOrUpdateTicket()" class="mb-4">
+        <div class="mb-3">
+          <label for="nomClient" class="form-label">Nom du client :</label>
+          <input type="text" id="nomClient" [(ngModel)]="selectedTicket.nomClient" name="nomClient" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="prix" class="form-label">Prix :</label>
+          <input type="number" id="prix" [(ngModel)]="selectedTicket.prix" name="prix" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="codePayement" class="form-label">Code de paiement :</label>
+          <input type="number" id="codePayement" [(ngModel)]="selectedTicket.codePayement" name="codePayement" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="reservee" class="form-check-label">Réservée :</label>
+          <input type="checkbox" id="reservee" [(ngModel)]="selectedTicket.reservee" name="reservee" class="form-check-input">
+        </div>
+
+        <div class="mb-3">
+          <label for="place" class="form-label">Place :</label>
+          <select id="place" [(ngModel)]="selectedTicket.place" name="place" class="form-control" required>
+            <option *ngFor="let place of places" [ngValue]="place">{{ place.numero }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="projection" class="form-label">Projection :</label>
+          <select id="projection" [(ngModel)]="selectedTicket.projection" name="projection" class="form-control" required>
+            <option *ngFor="let projection of projections" [ngValue]="projection">{{ projection.dateProjection | date }}</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary">{{ isAddMode ? 'Ajouter' : 'Modifier' }}</button>
+          <button type="button" (click)="clearForm()" class="btn btn-secondary">Annuler</button>
+        </div>
+      </form>
+
+      <!-- Liste des tickets -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom du client</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Code de paiement</th>
+            <th scope="col">Réservée</th>
+            <th scope="col">Place</th>
+            <th scope="col">Projection</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of tickets">
+            <td>{{ ticket.nomClient }}</td>
+            <td>{{ ticket.prix }}</td>
+            <td>{{ ticket.codePayement }}</td>
+            <td>{{ ticket.reservee ? 'Oui' : 'Non' }}</td>
+            <td>{{ ticket.place.numero }}</td>
+            <td>{{ ticket.projection.dateProjection | date }}</td>
+            <td>
+              <button type="button" class="btn btn-sm btn-primary" (click)="editTicket(ticket)">Modifier</button>
+              <button type="button" class="btn btn-sm btn-danger" (click)="deleteTicket(ticket.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+

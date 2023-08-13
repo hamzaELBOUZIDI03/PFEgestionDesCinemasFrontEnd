@@ -1,0 +1,123 @@
+/* Strart Testimonials */
+
+.Testimonials {
+  height: 100vh;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.Testimonials:before {
+  content: "";
+  width: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: goldenrod;
+  height: 100%;
+}
+
+.Testimonials:after {
+  content: "";
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: black;
+  height: 100%;
+}
+
+.Testimonials h2 {
+  font-weight: bold;
+  font-size: 30px;
+  color: goldenrod;
+  margin: 0 0 30px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.Testimonials h2 span {
+  color: black;
+}
+
+@media (max-width: 575px) {
+  .Testimonials h2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .Testimonials h2 {
+    text-align: center;
+  }
+}
+
+.Testimonials .ts-box h3 {
+  text-align: center;
+}
+
+.Testimonials .ts-box {
+  position: relative;
+  z-index: 2;
+  width: calc(98% / 3);
+  float: right;
+  padding: 22px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+@media (max-width: 745px) {
+  .Testimonials .ts-box {
+    width: 100%;
+    margin-bottom: 10px;
+    float: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .Testimonials .ts-box {
+    width: 100%;
+    margin-bottom: 10px;
+    float: none;
+  }
+}
+
+.Testimonials .ts-box:not(:last-of-type) {
+  margin-left: 1%;
+}
+
+.Testimonials .ts-box > p {
+  margin: 0 0 15px;
+  line-height: 1.5;
+  font-size: 18px;
+  color: black;
+  font-style: italic;
+}
+
+.Testimonials .ts-box .person-info {
+  overflow: hidden;
+}
+
+.Testimonials .ts-box .person-info h4 {
+  margin: 14px 0 15px;
+}
+
+.Testimonials .ts-box .person-info p {
+  color: black;
+  margin: 0;
+}
+
+.Testimonials .ts-box1 {
+  background-color: red;
+}
+
+.Testimonials .ts-box h3 {
+  color: goldenrod;
+}
+
+.Testimonials .ts-box p span {
+  color: goldenrod;
+  font-family: 'Times New Roman', Times, serif;
+}
+/* End Testimonials */

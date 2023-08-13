@@ -1,0 +1,148 @@
+
+<div class="row">
+  <div class="col-md-3 sidebar">
+
+    <a mat-list-item routerLink="/accueil" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+
+      <span>Accueil</span>
+   </a>
+   <mat-nav-list>
+
+     <!-- <a mat-list-item routerLink="/adminDashboard" routerLinkActive="active">
+       <mat-icon>dashboard</mat-icon>
+       <span>Dashboard</span>
+     </a> -->
+
+     <!-- Ajoutez d'autres liens pour les opérations CRUD -->
+
+
+     <a mat-list-item routerLink="/ville" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Villes</h5>
+
+     </a>
+     <a mat-list-item routerLink="/cinemaAdmin" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Cinémas</h5>
+
+     </a>
+     <a mat-list-item routerLink="/categorie" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Catégories</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/film" routerLinkActive="active">
+       <mat-icon></mat-icon>
+       <h5>Films</h5>
+     </a>
+
+     <a mat-list-item routerLink="/salle" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Salle</h5>
+
+     </a>
+     <a mat-list-item routerLink="/seance" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Séances</h5>
+
+     </a>
+
+
+     <a mat-list-item routerLink="/place" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Places</h5>
+
+     </a>
+
+     <!-- <a mat-list-item routerLink="/projection" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Projéctions</h5>
+
+     </a> -->
+
+     <a mat-list-item routerLink="/ticket" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Tickets</h5>
+
+     </a>
+
+
+   </mat-nav-list>
+  </div>
+  <div class="col-md-9">
+    <div class="container">
+      <h2>Gestion des projections</h2>
+
+      <!-- Formulaire d'ajout ou de modification -->
+      <form (ngSubmit)="addOrUpdateProjection()" class="mb-4">
+        <div class="mb-3">
+          <label for="dateProjection" class="form-label">Date de projection :</label>
+          <input type="date" id="dateProjection" [(ngModel)]="selectedProjection.dateProjection" name="dateProjection" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="prix" class="form-label">Prix :</label>
+          <input type="number" id="prix" [(ngModel)]="selectedProjection.prix" name="prix" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="salle" class="form-label">Salle :</label>
+          <select id="salle" [(ngModel)]="selectedProjection.salle" name="salle" class="form-control" required>
+            <option *ngFor="let salle of salles" [ngValue]="salle">{{ salle.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="film" class="form-label">Film :</label>
+          <select id="film" [(ngModel)]="selectedProjection.film" name="film" class="form-control" required>
+            <option *ngFor="let film of films" [ngValue]="film">{{ film.titre }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="seance" class="form-label">Séance :</label>
+          <select id="seance" [(ngModel)]="selectedProjection.seance" name="seance" class="form-control" required>
+            <option *ngFor="let seance of seances" [ngValue]="seance">{{ seance.heureDebut }}</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary">{{ isAddMode ? 'Ajouter' : 'Modifier' }}</button>
+          <button type="button" (click)="clearForm()" class="btn btn-secondary">Annuler</button>
+        </div>
+      </form>
+
+      <!-- Liste des projections -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date de projection</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Salle</th>
+            <th scope="col">Film</th>
+            <th scope="col">Séance</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let projection of projections">
+            <td>{{ projection.dateProjection | date }}</td>
+            <td>{{ projection.prix }}</td>
+            <td>{{ projection.salle.name }}</td>
+            <td>{{ projection.film.titre }}</td>
+            <td>{{ projection.seance.heureDebut }}</td>
+            <td>
+              <button (click)="editProjection(projection)" class="btn btn-primary btn-sm">Modifier</button>
+              <button (click)="deleteProjection(projection.id)" class="btn btn-danger btn-sm">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+

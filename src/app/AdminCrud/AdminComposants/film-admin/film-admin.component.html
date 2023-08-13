@@ -1,0 +1,156 @@
+
+<div class="row">
+  <div class="col-md-3 sidebar">
+
+    <a mat-list-item routerLink="/accueil" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+
+      <span>Accueil</span>
+   </a>
+   <mat-nav-list>
+
+     <!-- <a mat-list-item routerLink="/adminDashboard" routerLinkActive="active">
+       <mat-icon>dashboard</mat-icon>
+       <span>Dashboard</span>
+     </a> -->
+
+     <!-- Ajoutez d'autres liens pour les opérations CRUD -->
+
+
+     <a mat-list-item routerLink="/ville" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Villes</h5>
+
+     </a>
+     <a mat-list-item routerLink="/cinemaAdmin" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Cinémas</h5>
+
+     </a>
+     <a mat-list-item routerLink="/categorie" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Catégories</h5>
+
+     </a>
+
+     <!-- <a mat-list-item routerLink="/film" routerLinkActive="active">
+       <mat-icon></mat-icon>
+       <h5>Films</h5>
+     </a> -->
+
+     <a mat-list-item routerLink="/salle" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Salle</h5>
+
+     </a>
+     <a mat-list-item routerLink="/seance" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Séances</h5>
+
+     </a>
+
+
+     <a mat-list-item routerLink="/place" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Places</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/projection" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Projéctions</h5>
+
+     </a>
+
+     <a mat-list-item routerLink="/ticket" routerLinkActive="active">
+       <mat-icon></mat-icon>
+      <h5>Tickets</h5>
+
+     </a>
+
+
+   </mat-nav-list>
+  </div>
+  <div class="col-md-9">
+    <div class="container">
+      <h2>Gestion des films</h2>
+
+      <!-- Formulaire d'ajout ou de modification -->
+      <form (ngSubmit)="addOrUpdateFilm()" class="mb-4">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre :</label>
+          <input type="text" id="titre" [(ngModel)]="selectedFilm.titre" name="titre" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description :</label>
+          <textarea id="description" [(ngModel)]="selectedFilm.description" name="description" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="realisateur" class="form-label">Réalisateur :</label>
+          <input type="text" id="realisateur" [(ngModel)]="selectedFilm.realisateur" name="realisateur" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="dateSortie" class="form-label">Date de sortie :</label>
+          <input type="date" id="dateSortie" [(ngModel)]="selectedFilm.dateSortie" name="dateSortie" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="duree" class="form-label">Durée :</label>
+          <input type="number" id="duree" [(ngModel)]="selectedFilm.duree" name="duree" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="photo" class="form-label">Photo :</label>
+          <input type="text" id="photo" [(ngModel)]="selectedFilm.photo" name="photo" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="categorieFilm" class="form-label">Catégorie du film :</label>
+          <select id="categorieFilm" [(ngModel)]="selectedFilm.categorieFilm.id" name="categorieFilm" class="form-control" required>
+            <option *ngFor="let categorie of categorieFilms" [value]="categorie.id">{{ categorie.name }}</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary">{{ isAddMode ? 'Ajouter' : 'Modifier' }}</button>
+          <button type="button" (click)="clearForm()" class="btn btn-secondary">Annuler</button>
+        </div>
+      </form>
+
+      <!-- Liste des films -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Réalisateur</th>
+            <th class="dateee" scope="col">Date de sortie</th>
+            <th scope="col">Durée</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let film of films">
+            <td>{{ film.titre }}</td>
+            <td>{{ film.description }}</td>
+            <td>{{ film.realisateur }}</td>
+            <td>{{ film.dateSortie | date }}</td>
+            <td>{{ film.duree }}</td>
+            <td>{{ film.photo }}</td>
+            <td>{{ film.categorieFilm.name }}</td>
+            <td>
+
+               <button (click)="editFilm(film)" class="btn btn-primary btn-sm">Modifier</button>
+               <button (click)="deleteFilm(film.id)" class="btn btn-danger btn-sm">Supprimer</button>
+
+
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
